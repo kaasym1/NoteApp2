@@ -1,28 +1,32 @@
 package com.example.noteapp2
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.noteapp2.databinding.FragmentFirstBinding
+import com.example.noteapp2.databinding.FragmentOnBoardingBinding
 
 
-class FirstFragment : Fragment() {
+class OnBoardingFragment : Fragment() {
 
-private lateinit var binding: FragmentFirstBinding
-private val adapter = VPAdapter(this::onClick)
+    private lateinit var binding: FragmentOnBoardingBinding
+    private val adapter = VPAdapter(this::onClick)
+    private val pref by lazy {
+        Pref(requireContext())
+    }
 
     private fun onClick() {
-        findNavController().navigate(R.id.secondFragment)
+        pref.onShowed()
+        findNavController().navigateUp()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFirstBinding.inflate(inflater,container,false)
+        binding = FragmentOnBoardingBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         return binding.root
     }

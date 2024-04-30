@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/firstFragment">
+    app:startDestination="@id/home_fragment">
 
     <fragment
-        android:id="@+id/firstFragment"
-        android:name="com.example.noteapp2.FirstFragment"
-        android:label="fragment_first"
-        tools:layout="@layout/fragment_first" />
+        android:id="@+id/on_boarding"
+        android:name="com.example.noteapp2.OnBoardingFragment"
+        android:label="onBoarding"
+        tools:layout="@layout/fragment_on_boarding" />
     <fragment
-        android:id="@+id/secondFragment"
-        android:name="com.example.noteapp2.SecondFragment"
+        android:id="@+id/home_fragment"
+        android:name="com.example.noteapp2.HomeFragment"
         android:label="fragment_second"
-        tools:layout="@layout/fragment_second" />
+        tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/thirdFragment"
+        android:id="@+id/task_fragment"
         android:name="com.example.noteapp2.ThirdFragment"
         android:label="fragment_third"
         tools:layout="@layout/fragment_third" />
