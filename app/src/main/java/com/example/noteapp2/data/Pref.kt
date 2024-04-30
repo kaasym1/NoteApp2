@@ -1,4 +1,4 @@
-package com.example.noteapp2
+package com.example.noteapp2.data
 
 import android.content.Context
 
@@ -9,7 +9,6 @@ class Pref(context:Context) {
     fun isShow(): Boolean {
         return pref.getBoolean(SHOWED_KEY, false)
     }
-
 
     fun onShowed() {
         pref.edit().putBoolean(SHOWED_KEY, true).apply()

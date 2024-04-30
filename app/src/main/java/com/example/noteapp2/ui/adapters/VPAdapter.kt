@@ -1,12 +1,13 @@
-package com.example.noteapp2
+package com.example.noteapp2.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import coil.load
+import com.example.noteapp2.R
 import com.example.noteapp2.databinding.ItemOnboardingBinding
+import com.example.noteapp2.models.OnBoarding
 
 class VPAdapter(private val onClick: () -> Unit) : Adapter<VPAdapter.VPViewHolder>() {
     private val list = arrayListOf<OnBoarding>(

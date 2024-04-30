@@ -2,4 +2,8 @@
 plugins {
     id("com.android.application") version "8.2.2" apply false
     id("org.jetbrains.kotlin.android") version "1.9.22" apply false
+    //Ksp
+    id("com.google.devtools.ksp") version "1.9.21-1.0.15" apply false
+    //SafeArgs
+    id("androidx.navigation.safeargs.kotlin") version "2.5.3" apply false
 }

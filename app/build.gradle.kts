@@ -1,6 +1,10 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    //Ksp
+    id("com.google.devtools.ksp")
+    //SafeArgs
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -62,6 +66,11 @@ dependencies {
 
         /*Coil*/
         implementation("io.coil-kt:coil:2.5.0")
+
+        //ROOM
+        val roomVersion = "2.6.1"
+        implementation("androidx.room:room-ktx:$roomVersion")
+        ksp("androidx.room:room-compiler:$roomVersion")
 
     }
 }
