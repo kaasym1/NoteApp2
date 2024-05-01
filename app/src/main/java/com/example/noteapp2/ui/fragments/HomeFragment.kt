@@ -1,11 +1,9 @@
-package com.example.noteapp2.ui
+package com.example.noteapp2.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -28,7 +26,6 @@ class HomeFragment : Fragment(), OnClick {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
         return binding.root
     }
 
@@ -71,7 +68,9 @@ class HomeFragment : Fragment(), OnClick {
     }
 
     override fun onItemClick(noteModel: NoteModel) {
-        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(noteModel.id)
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+            noteModel.id
+        )
         findNavController().navigate(action)
     }
 }

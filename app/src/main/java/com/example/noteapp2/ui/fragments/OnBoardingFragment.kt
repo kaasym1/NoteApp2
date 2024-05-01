@@ -1,4 +1,4 @@
-package com.example.noteapp2.ui
+package com.example.noteapp2.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -29,7 +29,6 @@ class OnBoardingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentOnBoardingBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
         return binding.root
     }
 

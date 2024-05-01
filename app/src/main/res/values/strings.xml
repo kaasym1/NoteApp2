@@ -2,4 +2,20 @@
     <string name="app_name">NoteApp2</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="start">Начать работу</string>
+    <string name="skip">Пропустить</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="note">Заметки</string>
+    <string name="plus">+</string>
+    <string name="search">Поиск заметок</string>
+    <string name="finish">Готово</string>
+    <string name="title">Название</string>
+    <string name="reg">Регистрация c Google</string>
+    <string name="number">+996 707 777 777</string>
+    <string name="your_code">Ваш код</string>
+    <string name="get_code">Получить код</string>
+    <string name="confirm">Потвердить</string>
+    <string name="send_again">Отправить снова</string>
+    <string name="send"><![CDATA[->]]></string>
+    <string name="client_id">1092900779437-as33m4sfbm0gjc2j536jlprlok751a34.apps.googleusercontent.com</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.noteapp2.ui
+package com.example.noteapp2.ui.fragments
 
 import android.os.Bundle
 import android.text.Editable
@@ -31,7 +31,6 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDetailBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
         return binding.root
     }
 

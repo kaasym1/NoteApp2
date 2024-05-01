@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/home_fragment">
+    app:startDestination="@id/singUpFragment">
 
     <fragment
         android:id="@+id/on_boarding"
-        android:name="com.example.noteapp2.ui.OnBoardingFragment"
+        android:name="com.example.noteapp2.ui.fragments.OnBoardingFragment"
         android:label="onBoarding"
         tools:layout="@layout/fragment_on_boarding" />
     <fragment
         android:id="@+id/home_fragment"
-        android:name="com.example.noteapp2.ui.HomeFragment"
+        android:name="com.example.noteapp2.ui.fragments.HomeFragment"
         android:label="fragment_second"
         tools:layout="@layout/fragment_home">
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/detail_fragment"
-        android:name="com.example.noteapp2.ui.DetailFragment"
+        android:name="com.example.noteapp2.ui.fragments.DetailFragment"
         android:label="fragment_third"
         tools:layout="@layout/fragment_detail">
         <action
@@ -31,4 +31,9 @@
             android:name="noteId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/singUpFragment"
+        android:name="com.example.noteapp2.ui.fragments.SingUpFragment"
+        android:label="fragment_sing_up"
+        tools:layout="@layout/fragment_sing_up" />
 </navigation>
