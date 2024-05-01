@@ -27,9 +27,8 @@
         <action
             android:id="@+id/action_detail_fragment_to_home_fragment"
             app:destination="@id/home_fragment" />
-      <!--  <argument
-            android:name="note"
-            app:argType="com.example.noteapp2.models.NoteModel"
-            app:nullable="true" />-->
+        <argument
+            android:name="noteId"
+            app:argType="integer" />
     </fragment>
 </navigation>

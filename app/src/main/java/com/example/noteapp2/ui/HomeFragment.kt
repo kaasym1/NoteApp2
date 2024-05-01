@@ -1,6 +1,7 @@
 package com.example.noteapp2.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +35,7 @@ class HomeFragment : Fragment(), OnClick {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = NoteAdapter()
+        adapter = NoteAdapter(this)
         val list = App.appDataBase?.noteDao()?.getAllNotes()
         binding.rvNotes.adapter = adapter
         adapter.submitList(list)
@@ -70,7 +71,7 @@ class HomeFragment : Fragment(), OnClick {
     }
 
     override fun onItemClick(noteModel: NoteModel) {
-        /*val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(noteModel)*/
-        findNavController().navigate(R.id.action_home_fragment_to_detail_fragment)
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(noteModel.id)
+        findNavController().navigate(action)
     }
 }

@@ -21,6 +21,7 @@ import java.util.Locale
 
 class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
+    private var noteId: Int = -1
     var color: Int = 0
     var timeText = ""
     var dateText = ""
@@ -36,6 +37,8 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        update()
         binding.radioGroup.setOnCheckedChangeListener { group, checkedId ->
             val radioButton: RadioButton = when (checkedId) {
                 binding.radio1.id -> binding.radio1
@@ -47,7 +50,7 @@ class DetailFragment : Fragment() {
                 when (it.tag) {
                     "red" -> color = resources.getColor(R.color.red)
                     "black" -> color = resources.getColor(R.color.black2)
-                    "white" -> color = resources.getColor(R.color.white)
+                    "white" -> color = resources.getColor(R.color.white2)
                 }
             }
         }
@@ -66,6 +69,19 @@ class DetailFragment : Fragment() {
 
     }
 
+    private fun update() {
+        arguments?.let {
+            noteId = it.getInt("noteId", -1)
+        }
+        if (noteId != -1) {
+            val argNote = App.appDataBase?.noteDao()?.getNoteById(noteId)
+            argNote?.let {
+                binding.etTitle.setText(it.title)
+                binding.etDescription.setText(it.content)
+            }
+        }
+    }
+
     private fun initListener() {
         binding.btnFinished.setOnClickListener {
             val noteModel = NoteModel(
@@ -75,7 +91,20 @@ class DetailFragment : Fragment() {
                 time = timeText,
                 date = dateText
             )
-            App.appDataBase?.noteDao()?.insertNote(noteModel)
+
+            if (noteId != -1){
+                val updatedNote = NoteModel(
+                    title = binding.etTitle.text.toString(),
+                    content = binding.etDescription.text.toString(),
+                    color = color,
+                    time = timeText,
+                    date = dateText
+                )
+                updatedNote.id = noteId
+                App.appDataBase?.noteDao()?.updateNote(updatedNote)
+            }else{
+                App.appDataBase?.noteDao()?.insertNote(noteModel)
+            }
             findNavController().navigate(R.id.home_fragment)
         }
     }
