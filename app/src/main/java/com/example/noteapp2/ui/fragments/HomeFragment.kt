@@ -1,9 +1,13 @@
 package com.example.noteapp2.ui.fragments
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.NotificationManagerCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -39,6 +43,8 @@ class HomeFragment : Fragment(), OnClick {
         initListener()
     }
 
+  
+
     override fun onResume() {
         super.onResume()
         updateNoteList()
@@ -51,7 +57,7 @@ class HomeFragment : Fragment(), OnClick {
 
         imgShape.setOnClickListener {
             if (flag) {
-                imgShape.setImageResource(R.drawable.ic_shape2)
+                imgShape.setImageResource(R.drawable.ic_menu)
                 binding.rvNotes.layoutManager = GridLayoutManager(requireContext(), 2)
                 flag = false
             } else {

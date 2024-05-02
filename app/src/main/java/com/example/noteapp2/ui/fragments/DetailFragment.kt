@@ -1,5 +1,8 @@
 package com.example.noteapp2.ui.fragments
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -7,6 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.noteapp2.App
@@ -18,13 +24,14 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-
 class DetailFragment : Fragment() {
+
     private lateinit var binding: FragmentDetailBinding
     private var noteId: Int = -1
-    var color: Int = 0
-    var timeText = ""
-    var dateText = ""
+    private var color: Int = 0
+    private var timeText = ""
+    private var dateText = ""
+    private val notificationPermissionCode = 101
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +44,10 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        requestNotificationPermission()
+
         update()
+
         binding.radioGroup.setOnCheckedChangeListener { group, checkedId ->
             val radioButton: RadioButton = when (checkedId) {
                 binding.radio1.id -> binding.radio1
@@ -63,9 +73,35 @@ class DetailFragment : Fragment() {
         binding.txtDate.text = dateText
 
         setupTextChangedListener()
-        checkButtonVisibility()
-        initListener()
 
+        checkButtonVisibility()
+
+        initListener()
+    }
+
+    private fun requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val hasNotificationPermission = ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.RECEIVE_BOOT_COMPLETED
+            ) == PackageManager.PERMISSION_GRANTED
+            if (!hasNotificationPermission) {
+                val dialog = AlertDialog.Builder(requireContext())
+                    .setTitle("Разрешение на отправку уведомлений")
+                    .setMessage("Разрешить приложению отправлять уведомления?")
+                    .setPositiveButton("Да") { dialog, which ->
+                        ActivityCompat.requestPermissions(
+                            requireActivity(),
+                            arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                            notificationPermissionCode
+                        )
+                    }
+                    .setNegativeButton("Нет") { dialog, which ->
+                    }
+                    .create()
+                dialog.show()
+            }
+        }
     }
 
     private fun update() {
@@ -108,7 +144,6 @@ class DetailFragment : Fragment() {
         }
     }
 
-
     private fun setupTextChangedListener() {
         binding.etTitle.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -142,6 +177,4 @@ class DetailFragment : Fragment() {
                 View.GONE
             }
     }
-
-
 }
